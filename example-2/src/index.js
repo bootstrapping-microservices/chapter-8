@@ -15,8 +15,16 @@ function startHttpServer() {
         setupHandlers(app);
 
         const port = process.env.PORT && parseInt(process.env.PORT) || 3000;
-        app.listen(port, () => {
-            resolve();
+        const server = app.listen(port, () => {
+            resolve({ // Return an object with a 'close' function that can be used to close our HTTP server.
+                close: () => {
+                    return new Promise(resolve => {
+                        server.close(() => { // Close the Express close function.
+                            resolve(); // Resolve the promise when the server has closed.
+                        });
+                    })
+                },  
+            });
         });
     });
 }

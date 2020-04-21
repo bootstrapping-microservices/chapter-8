@@ -1,3 +1,4 @@
+const chakram = require('chakram');
 
 describe("my microservice", () => {
 
@@ -29,8 +30,10 @@ describe("my microservice", () => {
         
         await startHttpServer();
 
-        expect(mockListenFn.mock.calls.length).toBe(1);     // Check only 1 call to 'listen'.
-        expect(mockListenFn.mock.calls[0][0]).toBe(3000);   // Check for port 3000.
+        expect(mockListenFn.mock.calls.length).toEqual(1);     // Check only 1 call to 'listen'.
+        expect(mockListenFn.mock.calls[0][0]).toEqual(3000);   // Check for port 3000.
     });
 
+    // ... more tests go here ...
+    
 });
