@@ -8,23 +8,20 @@ describe("my microservice", () => {
     // Import the module we are testing.
     //
 
-    const { startHttpServer } = require("./index"); 
+    const { startMicroservice } = require("./index"); 
 
     //
     // Setup the HTTP server.
     //
 
-    let server; // Saves a reference to the web server created by Express.
+    let microservice; // Saves a reference to the our microservice object.
 
     beforeAll(async () => {
-        server = await startHttpServer(); // Start server before all tests.
-        console.log("HTTP server started.");
+        microservice = await startMicroservice(); // Start server before all tests.
     });
 
     afterAll(async () => {
-        console.log(`Closing HTTP server.`);
-        await server.close();  // Close server after all tests.
-        console.log("HTTP server closed.");
+        await microservice.close();  // Close server after all tests.
     });
 
     //
@@ -42,10 +39,10 @@ describe("my microservice", () => {
     //
     
     test("my http route", async () => {
-        
-        const response = await httpGet("/my-http-route");    // Make a HTTP request to the server we are testing.
-        expect(response.status).toEqual(200);                  // Expect HTTP status code 200 (ok).
-        expect(response.data).toEqual({ result: 5 });          // Check the data returned from the HTTP request.
+
+        const response = await httpGet("/videos");      // Make a HTTP request to the server we are testing.
+        expect(response.status).toEqual(200);           // Expect HTTP status code 200 (ok).
+        expect(response.data).toEqual({ videos: [] });  // Check the data returned from the HTTP request.
     });
 
     // ... more tests go here ...

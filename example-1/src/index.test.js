@@ -1,6 +1,5 @@
-const chakram = require('chakram');
 
-describe("my microservice", () => {
+describe("metadata microservice", () => {
 
     //
     // Setup mocks.
@@ -20,15 +19,15 @@ describe("my microservice", () => {
     // Import the module we are testing.
     //
 
-    const { startHttpServer } = require("./index"); 
+    const { startMicroservice } = require("./index"); 
 
     //
     // Tests go here.
     //
     
-    test("starting web server listens on port 3000", async () => {
+    test("microservice starts web server on startup", async () => {
         
-        await startHttpServer();
+        await startMicroservice();
 
         expect(mockListenFn.mock.calls.length).toEqual(1);     // Check only 1 call to 'listen'.
         expect(mockListenFn.mock.calls[0][0]).toEqual(3000);   // Check for port 3000.

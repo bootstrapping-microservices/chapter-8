@@ -1,14 +1,18 @@
 const express = require("express");
 
+//
+// Define your HTTP route handlers here.
+//
 function setupHandlers(app) {
 
-    app.get("/my-http-route", (req, res) => {
-        res.json({
-            result: 5,
-        });
-    });
+    // 
+    // Add handlers here.
+    //
 }
 
+//
+// Starts the Express HTTP server.
+//
 function startHttpServer() {
     return new Promise(resolve => { // Wrap in a promise so we can be notified when the server has started.
         const app = express();
@@ -21,6 +25,33 @@ function startHttpServer() {
     });
 }
 
-module.exports = {
-    startHttpServer,
-};
+//
+// Collect code here that executes when the microservice starts.
+//
+function startMicroservice() {
+    return startHttpServer();
+}
+
+//
+// Application entry point.
+//
+function main() {
+    return startMicroservice();
+}
+
+if (require.main === module) {
+    // Only start the microservice normally if this script is the "main" module.
+    main()
+        .then(() => console.log("Microservice online."))
+        .catch(err => {
+            console.error("Microservice failed to start.");
+            console.error(err && err.stack || err);
+        });
+}
+else {
+    // Otherwise we are running under test
+    module.exports = {
+        startMicroservice,
+    };
+}
+
