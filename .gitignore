@@ -1,3 +1,7 @@
-example-1/node_modules/
-example-2/node_modules/
-example-3/node_modules/
+.vagrant/
+node_modules/
+example-4/cypress/integration/examples/
+*.bak
+*.log
+example-4/cypress/fixtures/example.json
+example-4/cypress/videos/

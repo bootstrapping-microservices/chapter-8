@@ -1,0 +1,67 @@
+version: '3'
+services:
+
+  db:
+    image: mongo:4.2.0
+    container_name: db
+    ports:
+      - "27017:27017"
+    expose:
+      - "27017"
+    restart: always
+
+  # Service for loading database fixtures.
+  db-fixture-rest-api:
+    image: db-fixture-rest-api
+    build: 
+      context: ./db-fixture-rest-api
+      dockerfile: Dockerfile
+    container_name: db-fixture-rest-api
+    ports:
+     - "9000:80"
+    environment:
+     - PORT=80
+     - DBHOST=mongodb://db:27017
+     - FIXTURES_DIR=fixtures
+    volumes:
+     - ./fixtures:/usr/src/app/fixtures:z
+    depends_on:
+      - db
+    restart: always
+
+  gateway:
+    image: gateway
+    build: 
+      context: ./gateway
+      dockerfile: Dockerfile-dev
+    container_name: gateway
+    volumes:
+      - /tmp/gateway/npm-cache:/root/.npm:z
+      - ./gateway/src:/usr/src/app/src:z
+      - ./gateway/public:/usr/src/app/public:z
+    ports:
+      - "4000:80"
+    environment:
+      - PORT=80
+      - NODE_ENV=development
+    restart: "no"
+
+  metadata:
+    image: metadata
+    build: 
+      context: ./metadata
+      dockerfile: Dockerfile-dev
+    container_name: metadata
+    volumes:
+      - /tmp/metadata/npm-cache:/root/.npm:z
+      - ./metadata/src:/usr/src/app/src:z
+    ports:
+     - "4006:80"
+    environment:
+      - PORT=80
+      - DBHOST=mongodb://db:27017
+      - DBNAME=metadata
+      - NODE_ENV=development
+    depends_on:
+      - db
+    restart: "no"
