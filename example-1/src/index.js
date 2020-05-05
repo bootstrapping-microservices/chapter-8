@@ -5,9 +5,13 @@ const express = require("express");
 //
 function setupHandlers(app) {
 
-    // 
-    // Add handlers here.
-    //
+    app.get("/videos", (req, res) => {
+        res.json({
+            videos: [], // LATER ON WE'LL RETURN DATA FROM THE DATABASE.
+        });
+    });
+
+    // Add other handlers here.
 }
 
 //

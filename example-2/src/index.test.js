@@ -14,7 +14,7 @@ describe("my microservice", () => {
     // Setup the HTTP server.
     //
 
-    let microservice; // Saves a reference to the our microservice object.
+    let microservice; // Saves a reference to our microservice object.
 
     beforeAll(async () => {
         microservice = await startMicroservice(); // Start server before all tests.

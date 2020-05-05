@@ -10,6 +10,8 @@ function setupHandlers(microservice) {
             videos: [], // LATER ON WE'LL RETURN DATA FROM THE DATABASE.
         });
     });
+
+    // Add other handlers here.
 }
 
 //
