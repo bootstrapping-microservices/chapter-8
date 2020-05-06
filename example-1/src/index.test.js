@@ -39,7 +39,7 @@ describe("metadata microservice", () => {
 
         await startMicroservice();
 
-        expect(mockGetFn.mock.calls.length).toEqual(1);
+        expect(mockGetFn).toHaveBeenCalled();
 
         const mockRequest = {};
         const mockResponse = {
