@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-describe("my microservice", () => {
+describe("metadata microservice", () => {
 
     const BASE_URL = "http://localhost:3000"; // Base URL for our HTTP server.
 
@@ -38,7 +38,7 @@ describe("my microservice", () => {
     // Tests go here.
     //
     
-    test("my http route", async () => {
+    test("/videos route is empty", async () => {
 
         const response = await httpGet("/videos");      // Make a HTTP request to the server we are testing.
         expect(response.status).toEqual(200);           // Expect HTTP status code 200 (ok).
