@@ -1,8 +1,11 @@
 const axios = require("axios");
+const mongodb = require("mongodb");
 
 describe("metadata microservice", () => {
-
+    
     const BASE_URL = "http://localhost:3000"; // Base URL for our HTTP server.
+    const DBHOST = "mongodb://localhost:27017"; // Have the database running on this computer.
+    const DBNAME = "testdb";
 
     //
     // Import the module we are testing.
@@ -14,10 +17,10 @@ describe("metadata microservice", () => {
     // Setup the HTTP server.
     //
 
-    let microservice; // Saves a reference to our microservice object.
+    let microservice; // Saves a reference to the our microservice object.
 
     beforeAll(async () => {
-        microservice = await startMicroservice(); // Start server before all tests.
+        microservice = await startMicroservice(DBHOST, DBNAME); // Start server before all tests.
     });
 
     afterAll(async () => {
@@ -34,17 +37,50 @@ describe("metadata microservice", () => {
         return axios.get(url);
     }
 
+    // 
+    // Helper function to load a database fixture into our database.
+    //
+    async function loadDatabaseFixture(collectionName, records) {
+        await microservice.db.dropDatabase(); // Reset the test database.
+
+        const collection = microservice.db.collection(collectionName);
+        await collection.insertMany(records); // Insert the database fixture.
+    }
+    
     //
     // Tests go here.
     //
     
-    test("/videos route is empty", async () => {
+    test("/videos route retrieves data via videos collection", async () => {
 
-        const response = await httpGet("/videos");      // Make a HTTP request to the server we are testing.
-        expect(response.status).toEqual(200);           // Expect HTTP status code 200 (ok).
-        expect(response.data).toEqual({ videos: [] });  // Check the data returned from the HTTP request.
+        const id1 = new mongodb.ObjectId();
+        const id2 = new mongodb.ObjectId();
+        const videoPath1 = "my-video-1.mp4";
+        const videoPath2 = "my-video-2.mp4";
+
+        const testVideos = [
+            {
+                _id: id1,
+                videoPath: videoPath1
+            },
+            {
+                _id: id2,
+                videoPath: videoPath2
+            },
+        ];
+
+        // Load database fixture into the database.
+        await loadDatabaseFixture("videos", testVideos);
+        
+        const response = await httpGet("/videos");  // Make a request to the videos route.
+        expect(response.status).toEqual(200);       // Expect HTTP status code 200 (ok).
+
+        const videos = response.data.videos;        // Check the videos retrieved are the ones we put in the database.
+        expect(videos.length).toEqual(2);
+        expect(videos[0]._id).toEqual(id1.toString());
+        expect(videos[0].videoPath).toEqual(videoPath1);
+        expect(videos[1]._id).toEqual(id2.toString());
+        expect(videos[1].videoPath).toEqual(videoPath2);
     });
-
-    // ... more tests go here ...
 
 });

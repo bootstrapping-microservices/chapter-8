@@ -1,0 +1,34 @@
+example-4
+├── cypress
+│   ├── fixtures
+│   │   └── example.json
+│   ├── integration
+│   │   ├── examples
+│   │   │   ├── actions.spec.js
+│   │   │   ├── aliasing.spec.js
+│   │   │   └── ...
+│   │   └── front-end.spec.js
+│   ├── plugins
+│   │   └── index.js
+│   ├── support
+│   │   ├── commands.js
+│   │   └── index.js
+│   └── videos
+│       └── examples
+│           └── ...
+├── cypress.json
+├── db-fixture-rest-api
+│   ├── ...
+├── docker-compose.yml
+├── fixtures
+│   └── two-videos
+│       └── videos.js
+├── gateway
+│   ├── ...
+├── metadata
+│   ├── ...
+├── package.json
+├── package-lock.json
+└── scripts
+    └── dev
+        ├── ...

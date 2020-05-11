@@ -1,17 +1,13 @@
 {
-  "name": "example-3",
+  "name": "example-4",
   "version": "1.0.0",
-  "main": "src/index.js",
   "scripts": {
-    "test": "jest",
-    "test:watch": "jest --watchAll"
+    "cypress": "cypress open",
+    "test": "cypress run"
   },
+  "dependencies": {},
   "devDependencies": {
-    "axios": "^0.19.2",
-    "jest": "^25.4.0"
-  },
-  "dependencies": {
-    "express": "^4.17.1",
+    "cypress": "^4.4.1",
     "mongodb": "^3.5.6"
   }
 }

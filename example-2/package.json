@@ -1,5 +1,5 @@
 {
-  "name": "example-2",
+  "name": "example-3",
   "version": "1.0.0",
   "main": "src/index.js",
   "scripts": {
@@ -11,6 +11,7 @@
     "jest": "^25.4.0"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongodb": "^3.5.6"
   }
 }

@@ -5,3 +5,5 @@ example-4/cypress/integration/examples/
 *.log
 example-4/cypress/fixtures/example.json
 example-4/cypress/videos/
+example-3/cypress/integration/examples/
+old-example-2/
