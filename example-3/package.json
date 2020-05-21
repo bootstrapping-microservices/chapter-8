@@ -2,7 +2,7 @@
   "name": "example-4",
   "version": "1.0.0",
   "scripts": {
-    "cypress": "cypress open",
+    "test:watch": "cypress open",
     "test": "cypress run"
   },
   "dependencies": {},
