@@ -1,0 +1,12 @@
+{
+  "name": "example-1",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watchAll"
+  },
+  "devDependencies": {
+    "jest": "^25.4.0"
+  },
+  "dependencies": {}
+}
