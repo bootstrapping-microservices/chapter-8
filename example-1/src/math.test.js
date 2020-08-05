@@ -1,3 +1,8 @@
+//
+// A trivial example of automated testing with Jest.
+//
+
+
 const { square } = require("./math");
 
 describe("square function", () => {

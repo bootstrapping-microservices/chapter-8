@@ -1,3 +1,7 @@
+//
+// The full code for the "metadata" microservice.
+//
+
 const express = require("express");
 const mongodb = require("mongodb");
 

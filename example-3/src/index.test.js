@@ -1,3 +1,7 @@
+//
+// An example of running integration tests against the "metadata" microservice using Jest.
+//
+
 const axios = require("axios");
 const mongodb = require("mongodb");
 

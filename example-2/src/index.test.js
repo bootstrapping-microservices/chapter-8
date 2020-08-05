@@ -1,3 +1,6 @@
+//
+// An example of running unit tests against the "metadata" microservice using Jest.
+//
 
 describe("metadata microservice", () => {
 
