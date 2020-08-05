@@ -1,3 +1,6 @@
+//
+// An example of running end to end tests against our microservices application using Cypress.
+//
 
 describe("flixtube front end", () => {
 
