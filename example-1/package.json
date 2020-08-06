@@ -6,7 +6,7 @@
     "test:watch": "jest --watchAll"
   },
   "devDependencies": {
-    "jest": "^25.4.0"
+    "jest": "^26.2.2"
   },
   "dependencies": {}
 }
